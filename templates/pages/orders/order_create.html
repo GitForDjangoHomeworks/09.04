@@ -1,0 +1,53 @@
+z`{% extends 'layout/base.html' %}
+
+
+{% block title %}
+{{ category.name }}
+{% endblock title %}
+
+{% block content %}
+
+<h1 class="">Заказы</h1>
+<section class="container">
+    <div class="row-fluid">
+        <div class="col-md-6 col-xl-6">
+            <div class="order-info">
+                <h3>Ваш заказ</h3>
+                <table>
+                    <tbody>
+                        {% for item in cart %}
+                        <tr>
+                            <td>{{ item.quantity }} x {{ item.product.name }}</td>
+                            <td><span> {{ item.total_price }}</span></td>
+                            </li>
+                            {% endfor %}
+                        <tr>
+                            <td colspan="2">Итого: {{ cart.get_total_price }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-xl-6">
+            
+            <table>
+                <form action="." method="post" class="order-form">
+                    {{ form.as_table }}
+
+                    {% csrf_token %}
+                    <tr>
+                        <td colspan="2">
+                            <div class="btn-button-group mg-top-30 mg-bottom-15 bt-contact">
+                                <button class="zoa-btn btn-login hover-white contact" type="submit" value="Разместить заказ">Разместить заказ</button>
+                            </div>
+        
+                        </td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock content %}
